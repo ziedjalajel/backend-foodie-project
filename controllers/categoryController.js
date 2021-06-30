@@ -13,7 +13,7 @@ exports.categoryFetch = async (categoryId, next) => {
 exports.categoryCreate = async (req, res, next) => {
   try {
     if (req.file) {
-      req.body.image = `http://${req.get("host")}/${req.file.filename}`;
+      req.body.image = `http://${req.get("host")}/media/${req.file.filename}`;
     }
     const newCategory = await Category.create(req.body);
     res.status(201).json(newCategory);
@@ -24,7 +24,7 @@ exports.categoryCreate = async (req, res, next) => {
 exports.ingredientCreate = async (req, res, next) => {
   try {
     if (req.file) {
-      req.body.image = `http://${req.get("host")}/${req.file.filename}`;
+      req.body.image = `http://${req.get("host")}/media/${req.file.filename}`;
     }
     req.body.categoryId = req.category.id;
     const newIngredient = await Ingredient.create(req.body);
